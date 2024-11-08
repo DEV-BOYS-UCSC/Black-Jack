@@ -49,8 +49,9 @@ public class BlackJack {
 
     public void shuffleDeck(){
         for(int i=0; i< deck.size(); i++){
+            int j= random.nextInt(deck.size());
             Card currCard = deck.get(i);
-            Card randomCard = deck.get(i);
+            Card randomCard = deck.get(j);
         }
     }
 
