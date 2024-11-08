@@ -52,6 +52,8 @@ public class BlackJack {
             int j= random.nextInt(deck.size());
             Card currCard = deck.get(i);
             Card randomCard = deck.get(j);
+            deck.set(i, randomCard);
+            deck.set(j, currCard);
         }
     }
 
