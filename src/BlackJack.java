@@ -14,14 +14,14 @@ public class BlackJack {
             this.type = type;
         }
 
-        public String toString(){
+        public String toString() {
             return value + "-" + type;
         }
 
     }
 
     ArrayList<Card> deck;
-    Random  random = new Random();  //shuffle deck
+    Random random = new Random(); // shuffle deck
 
     BlackJack() {
         startGame();
@@ -32,20 +32,25 @@ public class BlackJack {
         shuffleDeck();
     }
 
-    public void buildDeck(){
+    public void buildDeck() {
         deck = new ArrayList<Card>();
-        String[] values = {"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
-        String[] types = {"C","D","H","S"};
+        String[] values = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
+        String[] types = { "C", "D", "H", "S" };
 
-
-        for(int i=0; i<types.length; i++){
-            for(int j=0; j<values.length; j++){
-                Card card= new Card(values[j], types[i]);
+        for (int i = 0; i < types.length; i++) {
+            for (int j = 0; j < values.length; j++) {
+                Card card = new Card(values[j], types[i]);
                 deck.add(card);
             }
         }
-System.out.println("BUILD DECK");
-System.out.println(deck);
+        System.out.println("BUILD DECK");
+        System.out.println(deck);
+    }
+
+    public void shuffleDeck(){
+        for(int i=0; i< deck.size(); i++){
+            Card currCard = deck.get(i);
+        }
     }
 
 }
