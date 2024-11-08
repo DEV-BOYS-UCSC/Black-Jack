@@ -34,7 +34,8 @@ public class BlackJack {
 
         for(int i=0; i<types.length; i++){
             for(int j=0; j<values.length; j++){
-                Card card= new Card(values[j], types[i])
+                Card card= new Card(values[j], types[i]);
+                deck.add(card);
             }
         }
 
