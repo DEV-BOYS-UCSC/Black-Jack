@@ -50,6 +50,7 @@ public class BlackJack {
     public void shuffleDeck(){
         for(int i=0; i< deck.size(); i++){
             Card currCard = deck.get(i);
+            Card randomCard = deck.get(i);
         }
     }
 
