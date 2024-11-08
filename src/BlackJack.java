@@ -4,27 +4,26 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
 
-
 public class BlackJack {
     private class Card {
-    String value;
-    String type;
+        String value;
+        String type;
 
-    Card(String value,String type){
-        this.value=value;
-        this.type= type;
-    }
-        
+        Card(String value, String type) {
+            this.value = value;
+            this.type = type;
+        }
+
     }
 
     ArrayList<Card> deck;
 
-    BlackJack(){
+    BlackJack() {
         startGame();
     }
 
-    public void startGame(){
-
+    public void startGame() {
+        buildDeck();
     }
 
 }
