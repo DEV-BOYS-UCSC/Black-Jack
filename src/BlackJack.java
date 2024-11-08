@@ -55,6 +55,9 @@ public class BlackJack {
             deck.set(i, randomCard);
             deck.set(j, currCard);
         }
+
+        System.out.println("AFTER SHUFFLE");
+        System.out.println(deck);
     }
 
 }
