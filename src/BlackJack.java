@@ -21,6 +21,7 @@ public class BlackJack {
     }
 
     ArrayList<Card> deck;
+    Random  random = new Random();  //shuffle deck
 
     BlackJack() {
         startGame();
@@ -28,6 +29,7 @@ public class BlackJack {
 
     public void startGame() {
         buildDeck();
+        shuffleDeck();
     }
 
     public void buildDeck(){
