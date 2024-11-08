@@ -16,6 +16,9 @@ public class BlackJack {
     }
         
     }
+
+    ArrayList<Card> deck;
+
     BlackJack(){
         startGame();
     }
