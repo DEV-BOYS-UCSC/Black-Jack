@@ -38,7 +38,7 @@ public class BlackJack {
                 deck.add(card);
             }
         }
-
+System.out.println("BUILD DECK");
     }
 
 }
