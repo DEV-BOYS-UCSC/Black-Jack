@@ -109,6 +109,10 @@ public class BlackJack {
                         message = "You lose!";
                     }
 
+                    g.setFont(new Font("Arial", Font.PLAIN,30));
+                    g.setColor(Color.white);
+                    g.drawString(message,220,250);
+
                 }
 
             } catch (Exception e) {
