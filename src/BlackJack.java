@@ -126,7 +126,7 @@ public class BlackJack {
                     hitButton.setEnabled(false);// Disable further hits
                 }
 
-                gamePanel.repaint();
+                gamePanel.repaint(); // Refresh the UI
 
             }
         });
