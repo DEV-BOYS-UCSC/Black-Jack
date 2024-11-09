@@ -142,8 +142,9 @@ public class BlackJack {
                     dealerAceCount += card.isAce()? 1 : 0;
                     dealerHand.add(card);
                 }
+                gamePanel.repaint();
             }
-        })
+        });
 
         gamePanel.repaint();
 
