@@ -134,6 +134,7 @@ public class BlackJack {
         stayButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 hitButton.setEnabled(false);
+                stayButton.setEnabled(false);
             }
         })
 
