@@ -68,6 +68,9 @@ public class BlackJack {
             try {
             //draw hidden card
             Image hiddenCardImg = new ImageIcon(getClass().getResource("./cards/BACK.png")).getImage();
+            if(!stayButton.isEnabled()){
+                hiddenCardImg = new ImageIcon(getClass().getResource(hiddenCard.getImagePath())).getImage();
+            }
             g.drawImage(hiddenCardImg, 20, 20, cardWidth, cardHeight, null);
 
 
