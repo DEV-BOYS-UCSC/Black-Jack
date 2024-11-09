@@ -119,7 +119,7 @@ public class BlackJack {
         hitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Card card = deck.remove(deck.size()-1); // Draw a new card
-                playerSum += card.getValue();
+                playerSum += card.getValue();// Update player's score
                 playerAceCount += card.isAce()? 1 : 0;
                 playerHand.add(card);
                 if(reducePlayerAce() > 21){  //A + 2 + J --> 1 + 2 + J
