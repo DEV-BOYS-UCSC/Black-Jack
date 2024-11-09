@@ -118,7 +118,7 @@ public class BlackJack {
 
         hitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Card card = deck.remove(deck.size()-1);
+                Card card = deck.remove(deck.size()-1); // Draw a new card
                 playerSum += card.getValue();
                 playerAceCount += card.isAce()? 1 : 0;
                 playerHand.add(card);
