@@ -135,6 +135,10 @@ public class BlackJack {
             public void actionPerformed(ActionEvent e){
                 hitButton.setEnabled(false);
                 stayButton.setEnabled(false);
+
+                while (dealerSum < 17){
+                    
+                }
             }
         })
 
