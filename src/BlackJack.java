@@ -95,6 +95,14 @@ public class BlackJack {
                 System.out.println("STAY: ");
                 System.out.println(dealerSum);
                 System.out.println(playerSum);
+
+                String message = "";
+                if (playerSum > 21) {
+                    message = "You Loose";
+                }else if (dealerSum > 21) {
+                    message = "You Win";
+                }
+                //both are <= 21
             }
 
             }catch (Exception e){
