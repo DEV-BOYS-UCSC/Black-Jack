@@ -120,8 +120,8 @@ public class BlackJack {
             public void actionPerformed(ActionEvent e) {
                 Card card = deck.remove(deck.size()-1); // Draw a new card
                 playerSum += card.getValue();// Update player's score
-                playerAceCount += card.isAce()? 1 : 0;
-                playerHand.add(card);
+                playerAceCount += card.isAce()? 1 : 0;// Update Ace count
+                playerHand.add(card);// Add the card to player's hand
                 if(reducePlayerAce() > 21){  //A + 2 + J --> 1 + 2 + J
                     hitButton.setEnabled(false);
                 }
