@@ -122,7 +122,7 @@ public class BlackJack {
                 playerSum += card.getValue();// Update player's score
                 playerAceCount += card.isAce()? 1 : 0;// Update Ace count
                 playerHand.add(card);// Add the card to player's hand
-                if(reducePlayerAce() > 21){  //A + 2 + J --> 1 + 2 + J
+                if(reducePlayerAce() > 21){  //A + 2 + J --> 1 + 2 + J    // Check if player busts
                     hitButton.setEnabled(false);
                 }
 
