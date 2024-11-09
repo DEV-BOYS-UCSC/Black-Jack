@@ -18,21 +18,21 @@ public class BlackJack {
             return value + "-" + type;
         }
 
-        public int getValue(){
-            if("AJQK".contains(value)){//A J Q K
-                if (value == "A"){
+        public int getValue() {
+            if ("AJQK".contains(value)) {// A J Q K
+                if (value == "A") {
                     return 11;
                 }
                 return 10;
             }
-            return Integer.parseInt(value);//2-10
+            return Integer.parseInt(value);// 2-10
         }
 
         public boolean isAce() {
-             return value == "A";
+            return value == "A";
         }
 
-        public String getImagePath(){
+        public String getImagePath() {
             return "./cards/" + toString() + ".png";
         }
 
@@ -41,71 +41,77 @@ public class BlackJack {
     ArrayList<Card> deck;
     Random random = new Random(); // shuffle deck
 
-    //dealer
+    // dealer
     Card hiddenCard;
     ArrayList<Card> dealerHand;
     int dealerSum;
     int dealerAceCount;
 
-    //player
+    // player
     ArrayList<Card> playerHand;
     int playerSum;
     int playerAceCount;
 
-    //window
+    // window
     int boardWidth = 600;
     int boardHeight = boardWidth;
 
-    int cardWidth = 110; //ratio should 1/1.4
-    int cardHeight =154;
+    int cardWidth = 110; // ratio should 1/1.4
+    int cardHeight = 154;
 
     JFrame frame = new JFrame("Black Jack");
-    JPanel gamePanel = new JPanel(){
+    JPanel gamePanel = new JPanel() {
         @Override
-        public void paintComponent(Graphics g){
+        public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            
+
             try {
-            //draw hidden card
-            Image hiddenCardImg = new ImageIcon(getClass().getResource("./cards/BACK.png")).getImage();
-            if(!stayButton.isEnabled()){
-                hiddenCardImg = new ImageIcon(getClass().getResource(hiddenCard.getImagePath())).getImage();
-            }
-            g.drawImage(hiddenCardImg, 20, 20, cardWidth, cardHeight, null);
-
-
-
-            //draw dealer's hand
-            for (int i = 0; i < dealerHand.size(); i++) {
-                Card card = dealerHand.get(i);
-                Image cardImg = new ImageIcon(getClass().getResource(card.getImagePath())).getImage();
-                g.drawImage(cardImg, cardWidth + 25 + (cardWidth + 5)*i, 20, cardWidth, cardHeight, null );
-            }
-
-            //draw player's hand
-            for (int i = 0; i < playerHand.size(); i++) {
-                Card card = playerHand.get(i);
-                Image cardImg = new ImageIcon(getClass().getResource(card.getImagePath())).getImage();
-                g.drawImage(cardImg, 20 + (cardWidth + 5)*i, 320, cardWidth, cardHeight, null);
-            }
-
-            if(!stayButton.isEnabled()){
-                dealerSum = reduceDealerAce();
-                playerSum = reducePlayerAce();
-                System.out.println("STAY: ");
-                System.out.println(dealerSum);
-                System.out.println(playerSum);
-
-                String message = "";
-                if (playerSum > 21) {
-                    message = "You Loose";
-                }else if (dealerSum > 21) {
-                    message = "You Win";
+                // draw hidden card
+                Image hiddenCardImg = new ImageIcon(getClass().getResource("./cards/BACK.png")).getImage();
+                if (!stayButton.isEnabled()) {
+                    hiddenCardImg = new ImageIcon(getClass().getResource(hiddenCard.getImagePath())).getImage();
                 }
-                //both are <= 21
-            }
+                g.drawImage(hiddenCardImg, 20, 20, cardWidth, cardHeight, null);
 
-            }catch (Exception e){
+                // draw dealer's hand
+                for (int i = 0; i < dealerHand.size(); i++) {
+                    Card card = dealerHand.get(i);
+                    Image cardImg = new ImageIcon(getClass().getResource(card.getImagePath())).getImage();
+                    g.drawImage(cardImg, cardWidth + 25 + (cardWidth + 5) * i, 20, cardWidth, cardHeight, null);
+                }
+
+                // draw player's hand
+                for (int i = 0; i < playerHand.size(); i++) {
+                    Card card = playerHand.get(i);
+                    Image cardImg = new ImageIcon(getClass().getResource(card.getImagePath())).getImage();
+                    g.drawImage(cardImg, 20 + (cardWidth + 5) * i, 320, cardWidth, cardHeight, null);
+                }
+
+                if (!stayButton.isEnabled()) {
+                    dealerSum = reduceDealerAce();
+                    playerSum = reducePlayerAce();
+                    System.out.println("STAY: ");
+                    System.out.println(dealerSum);
+                    System.out.println(playerSum);
+
+                    String message = "";
+                    if (playerSum > 21) {
+                        message = "You Loose";
+                    } else if (dealerSum > 21) {
+                        message = "You Win";
+                    }
+                    // both are <= 21
+                    else if (playerSum == dealerSum) {
+                        message = "Tie!";
+                    } else if (playerSum > dealerSum) {
+                        message = "You Win";
+                    } else if (playerSum < dealerSum) {
+                        message = "You lose!";
+                    }
+
+                }
+
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -113,8 +119,6 @@ public class BlackJack {
     JPanel buttonPanel = new JPanel();
     JButton hitButton = new JButton("Hit");
     JButton stayButton = new JButton("Stay");
-
-
 
     BlackJack() {
         startGame();
@@ -126,7 +130,7 @@ public class BlackJack {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         gamePanel.setLayout(new BorderLayout());
-        gamePanel.setBackground(new Color(53,101,77));
+        gamePanel.setBackground(new Color(53, 101, 77));
         frame.add(gamePanel);
 
         hitButton.setFocusable(false);
@@ -137,11 +141,11 @@ public class BlackJack {
 
         hitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Card card = deck.remove(deck.size()-1); // Draw a new card
+                Card card = deck.remove(deck.size() - 1); // Draw a new card
                 playerSum += card.getValue();// Update player's score
-                playerAceCount += card.isAce()? 1 : 0;// Update Ace count
+                playerAceCount += card.isAce() ? 1 : 0;// Update Ace count
                 playerHand.add(card);// Add the card to player's hand
-                if(reducePlayerAce() > 21){  //A + 2 + J --> 1 + 2 + J    // Check if player busts
+                if (reducePlayerAce() > 21) { // A + 2 + J --> 1 + 2 + J // Check if player busts
                     hitButton.setEnabled(false);// Disable further hits
                 }
 
@@ -151,14 +155,14 @@ public class BlackJack {
         });
 
         stayButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 hitButton.setEnabled(false);
                 stayButton.setEnabled(false);
 
-                while (dealerSum < 17){
-                    Card card = deck.remove(deck.size()-1);
+                while (dealerSum < 17) {
+                    Card card = deck.remove(deck.size() - 1);
                     dealerSum += card.getValue();
-                    dealerAceCount += card.isAce()? 1 : 0;
+                    dealerAceCount += card.isAce() ? 1 : 0;
                     dealerHand.add(card);
                 }
                 gamePanel.repaint();
@@ -170,20 +174,20 @@ public class BlackJack {
     }
 
     public void startGame() {
-        //deck
+        // deck
         buildDeck();
         shuffleDeck();
 
-        //dealer
+        // dealer
         dealerHand = new ArrayList<Card>();
         dealerSum = 0;
         dealerAceCount = 0;
 
-        hiddenCard = deck.remove(deck.size()-1); //remove card at last index
+        hiddenCard = deck.remove(deck.size() - 1); // remove card at last index
         dealerSum += hiddenCard.getValue();
         dealerAceCount += hiddenCard.isAce() ? 1 : 0;
 
-        Card card = deck.remove(deck.size()-1);
+        Card card = deck.remove(deck.size() - 1);
         dealerSum += card.getValue();
         dealerAceCount += card.isAce() ? 1 : 0;
         dealerHand.add(card);
@@ -194,23 +198,22 @@ public class BlackJack {
         System.out.println(dealerSum);
         System.out.println(dealerAceCount);
 
-        //player
+        // player
         playerHand = new ArrayList<Card>();
         playerSum = 0;
         playerAceCount = 0;
 
         for (int i = 0; i < 2; i++) {
-             card = deck.remove(deck.size()-1);
-             playerSum += card.getValue();
-             playerAceCount += card.isAce() ? 1 : 0;
-             playerHand.add(card);
+            card = deck.remove(deck.size() - 1);
+            playerSum += card.getValue();
+            playerAceCount += card.isAce() ? 1 : 0;
+            playerHand.add(card);
         }
 
         System.out.println("PLAYER:");
         System.out.println(playerHand);
         System.out.println(playerSum);
         System.out.println(playerAceCount);
-
 
     }
 
@@ -229,9 +232,9 @@ public class BlackJack {
         System.out.println(deck);
     }
 
-    public void shuffleDeck(){
-        for(int i=0; i< deck.size(); i++){
-            int j= random.nextInt(deck.size());
+    public void shuffleDeck() {
+        for (int i = 0; i < deck.size(); i++) {
+            int j = random.nextInt(deck.size());
             Card currCard = deck.get(i);
             Card randomCard = deck.get(j);
             deck.set(i, randomCard);
@@ -242,8 +245,8 @@ public class BlackJack {
         System.out.println(deck);
     }
 
-    public int reducePlayerAce(){
-        while (playerSum > 21 && playerAceCount >0){
+    public int reducePlayerAce() {
+        while (playerSum > 21 && playerAceCount > 0) {
             playerSum -= 10;
             playerAceCount -= 1;
         }
@@ -251,7 +254,7 @@ public class BlackJack {
     }
 
     public int reduceDealerAce() {
-        while (dealerSum > 21 && dealerAceCount > 0){
+        while (dealerSum > 21 && dealerAceCount > 0) {
             dealerSum -= 10;
             dealerAceCount -= 1;
         }
