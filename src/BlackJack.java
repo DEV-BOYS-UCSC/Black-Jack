@@ -131,6 +131,12 @@ public class BlackJack {
             }
         });
 
+        stayButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                hitButton.setEnabled(false);
+            }
+        })
+
         gamePanel.repaint();
 
     }
