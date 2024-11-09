@@ -89,6 +89,14 @@ public class BlackJack {
                 g.drawImage(cardImg, 20 + (cardWidth + 5)*i, 320, cardWidth, cardHeight, null);
             }
 
+            if(!stayButton.isEnabled()){
+                dealerSum = reduceDealerAce();
+                playerSum = reducePlayerAce();
+                System.out.println("STAY: ");
+                System.out.println(dealerSum);
+                System.out.println(playerSum);
+            }
+
             }catch (Exception e){
                 e.printStackTrace();
             }
