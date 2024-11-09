@@ -137,7 +137,7 @@ public class BlackJack {
                 stayButton.setEnabled(false);
 
                 while (dealerSum < 17){
-                    
+                    Card card = deck.remove(deck.size()-1);
                 }
             }
         })
