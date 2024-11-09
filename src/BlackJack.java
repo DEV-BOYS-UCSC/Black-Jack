@@ -139,6 +139,8 @@ public class BlackJack {
                 while (dealerSum < 17){
                     Card card = deck.remove(deck.size()-1);
                     dealerSum += card.getValue();
+                    dealerAceCount += card.isAce()? 1 : 0;
+                    dealerHand.add(card);
                 }
             }
         })
